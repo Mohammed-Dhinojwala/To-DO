@@ -19,14 +19,27 @@ function addTask(){
     }
 
     inputElem.value ='';
+    storeTask();
 }
 
 listContainerElem.addEventListener("click", function(e){
     if(e.target.tagName === "LI"){
         e.target.classList.toggle("checked");
+         storeTask();
 
     }
     else if(e.target.tagName === "SPAN"){
         e.target.parentElement.remove();
+         storeTask();
     }
-});
+},false);
+
+
+function storeTask(){
+    localStorage.setItem("data", listContainerElem.innerHTML);
+}
+ displayTask();
+displayTask();
+function displayTask(){
+    listContainerElem.innerHTML =localStorage.getItem("data");
+}
